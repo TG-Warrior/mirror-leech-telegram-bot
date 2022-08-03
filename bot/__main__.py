@@ -65,13 +65,17 @@ def stats(update, context):
 
 def start(update, context):
     buttons = ButtonMaker()
-    buttons.buildbutton("Repo", "https://www.github.com/anasty17/mirror-leech-telegram-bot")
-    buttons.buildbutton("Owner", "https://www.github.com/anasty17")
+    buttons.buildbutton("⭕️ Channel ⭕️", "https://t.me/I4Movies_AR")
+    buttons.buildbutton("👮‍♂️ Developer 👮‍♂️", "https://t.me/I4Movies_Office8372_Bot")
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
-This bot can mirror all your links to Google Drive or to telegram!
-Type /{BotCommands.HelpCommand} to get a list of available commands
+<b>Hello Darling</b> 🌹
+
+➟ <i>I can upload anything you want to Telegram. Add me to any Group or Use here and Start uploading!</i>
+➟ <i>I can mirror all your links to Google Drive!</i>
+
+For More: /{BotCommands.HelpCommand} to get a list of available commands
 '''
         sendMarkup(start_string, context.bot, update.message, reply_markup)
     else:
@@ -179,6 +183,8 @@ help = telegraph.create_page(
     )["path"]
 
 help_string = f'''
+__It's not a Difficult to use me.__😁
+
 /{BotCommands.PingCommand}: Check how long it takes to Ping the Bot
 
 /{BotCommands.AuthorizeCommand}: Authorize a chat or a user to use the bot (Can only be invoked by Owner & Sudo of the bot)
@@ -200,7 +206,7 @@ help_string = f'''
 
 def bot_help(update, context):
     button = ButtonMaker()
-    button.buildbutton("Other Commands", f"https://telegra.ph/{help}")
+    button.buildbutton("⭕️ My All Commands ⭕️", f"https://telegra.ph/{help}")
     reply_markup = InlineKeyboardMarkup(button.build_menu(1))
     sendMarkup(help_string, context.bot, update.message, reply_markup)
 
