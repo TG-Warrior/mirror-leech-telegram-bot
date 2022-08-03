@@ -71,6 +71,7 @@ def start(update, context):
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
 <b>Hello Darling</b> 🌹
+
 ➟ <i>I can upload anything you want to Telegram. Add me to any Group or Use here and Start uploading!</i>
 
 ➟ <i>I can mirror all your links to Google Drive!</i>
