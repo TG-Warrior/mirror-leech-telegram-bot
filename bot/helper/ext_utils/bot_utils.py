@@ -102,13 +102,13 @@ def bt_selection_buttons(id_: str):
     return InlineKeyboardMarkup(buttons.build_menu(2))
 
 def get_progress_bar_string(status):
-    completed = status.processed_bytes() / 8
-    total = status.size_raw() / 8
+    completed = status.processed_bytes() / 10
+    total = status.size_raw() / 10
     p = 0 if total == 0 else round(completed * 100 / total)
     p = min(max(p, 0), 100)
     cFull = p // 8
-    p_str = '■' * cFull
-    p_str += '□' * (12 - cFull)
+    p_str = '▰' * cFull
+    p_str += '▱' * (10 - cFull)
     p_str = f"[{p_str}]"
     return p_str
 
@@ -158,7 +158,7 @@ def get_readable_message():
                 msg += f" | <b>Time: </b>{get_readable_time(download.torrent_info().seeding_time)}"
             else:
                 msg += f"\n<b>Size: </b>{download.size()}"
-            msg += f"\n<code>/{BotCommands.CancelMirror} {download.gid()}</code>"
+            msg += f"\n<b>Cancel: </b><code>/{BotCommands.CancelMirror} {download.gid()}</code>"
             msg += "\n\n"
             if STATUS_LIMIT is not None and index == STATUS_LIMIT:
                 break
@@ -180,12 +180,12 @@ def get_readable_message():
                     upspeed_bytes += float(spd.split('K')[0]) * 1024
                 elif 'MB/s' in spd:
                     upspeed_bytes += float(spd.split('M')[0]) * 1048576
-        bmsg += f"\n<b>DL:</b> {get_readable_file_size(dlspeed_bytes)}/s | <b>UL:</b> {get_readable_file_size(upspeed_bytes)}/s"
+        bmsg += f"\n<b>📥 DL:</b> {get_readable_file_size(dlspeed_bytes)}/s | <b>📤 UL:</b> {get_readable_file_size(upspeed_bytes)}/s"
         if STATUS_LIMIT is not None and tasks > STATUS_LIMIT:
-            msg += f"<b>Page:</b> {PAGE_NO}/{pages} | <b>Tasks:</b> {tasks}\n"
+            msg += f"<b>📖 Page:</b> {PAGE_NO}/{pages} | <b>⚜️ Tasks:</b> {tasks}\n"
             buttons = ButtonMaker()
-            buttons.sbutton("Previous", "status pre")
-            buttons.sbutton("Next", "status nex")
+            buttons.sbutton("⏮️ Previous", "status pre")
+            buttons.sbutton("Next ⏭️", "status nex")
             button = InlineKeyboardMarkup(buttons.build_menu(2))
             return msg + bmsg, button
         return msg + bmsg, ""
